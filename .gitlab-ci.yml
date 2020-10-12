@@ -59,6 +59,8 @@ variables:
 
 stages:
   - build
+  - deploy-testing
+  - validate-environment
   - test
   - deploy  # dummy stage to follow the template guidelines
   - review
@@ -74,20 +76,14 @@ stages:
   - cleanup
 
 
-
-
-
-
-build_2:
-  stage: build
-  script:
-    - echo $mypassword
-
-
-
-
 workflow:
   rules:
+
+    - if: $CI_MERGE_REQUEST_ID
+      when: never
+    - when: always
+
+
     - if: '$BUILDPACK_URL || $AUTO_DEVOPS_EXPLICITLY_ENABLED == "1"'
 
     - exists:
@@ -175,3 +171,35 @@ include:
   - template: Security/Dependency-Scanning.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab-foss/blob/master/lib/gitlab/ci/templates/Security/Dependency-Scanning.gitlab-ci.yml
   - template: Security/License-Management.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab-foss/blob/master/lib/gitlab/ci/templates/Security/License-Management.gitlab-ci.yml
   - template: Security/SAST.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab-foss/blob/master/lib/gitlab/ci/templates/Security/SAST.gitlab-ci.yml
+
+
+# additional, non-Auto DevOps jobs
+regressions:
+  stage: test
+  script:
+    - echo "test..."
+
+functional tests:
+  stage: test
+  script:
+    - echo "test..."
+
+mobile tests:
+  stage: test
+  script:
+    - echo "test..."
+
+test-environment:
+  stage: deploy-testing
+  script:
+    - echo "test..."
+
+ping-environment:
+  stage: validate-environment
+  script:
+    - echo "test..."
+
+
+
+
+
