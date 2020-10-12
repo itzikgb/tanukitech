@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Welcome to Form Submission page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        
+        .button {
+        background-color: #b3b6bc;
+        border: none;
+        color: black;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+        
+    img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+        
+    table.innertable {
+        background-color: #a6b9d8;
+        /*background-color: #a6b9d8;*/
+        color: white;
+    }
+        
+    tr.tour {
+        text-align: center;
+    }
+    
+    tr.remember {
+        text-align: center;
+    }
+
+        
+    #team {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    #team td, #team th {
+        padding: 8px;
+    }
+    </style>
+</head>
+<body>
+    <div align="left">
+
+    <table id="team" style="width:800px" align="center">
+    <tr class="tour">
+        <td>
+        <h1>Form</h1>
+        <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+            <p>Id: <input type="text" th:field="*{id}" /></p>
+            <p>Message: <input type="text" th:field="*{content}" /></p>
+            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+        </form>
+        </td>
+    </tr>
+    </table></div>
+</body>
+</html>
