@@ -174,7 +174,7 @@ load_performance:
     DOCKER_DRIVER: overlay2
     DOCKER_HOST: tcp://docker:237
   variables: 
-    K6_TEST_FILE: k6-scripts/load-test.js
+    K6_TEST_FILE: k6-scripts/load-script.js
 
 
 
