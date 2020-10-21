@@ -173,7 +173,6 @@ load_performance:
   variables:
     DOCKER_DRIVER: overlay2
     DOCKER_HOST: tcp://docker:237
-  variables:
     K6_TEST_FILE: https://github.com/loadimpact/k6/blob/master/samples/http_get.js
 
 
