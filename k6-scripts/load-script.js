@@ -16,5 +16,6 @@ export let options = {
 };
 
 export default () => {
-    http.get('https://test-api.loadimpact.com/public/crocodiles/');
+   // http.get('https://test-api.loadimpact.com/public/crocodiles/');
+   http.get('https://https://production-demos-tanukitech.35.204.255.125.nip.io//');
 }
