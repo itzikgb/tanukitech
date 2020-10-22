@@ -195,7 +195,7 @@ deploy_testing:
   environment:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$CI_PROJECT_ID-$CI_ENVIRONMENT_SLUG.$KUBE_INGRESS_BASE_DOMAIN
-    on_stop: stop_review
+    on_stop: stop_testing
   artifacts:
     paths: [environment_url.txt, tiller.log, review.env]
     when: always
