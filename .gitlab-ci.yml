@@ -174,7 +174,6 @@ review:
     name: review/$CI_COMMIT_REF_NAME
     url: http://$CI_ENVIRONMENT_SLUG.example.com
   script:
-    - run_deploy_script
     - echo "ENVIRONMENT_URL=$CI_ENVIRONMENT_URL" >> review.env
   artifacts:
     paths:
