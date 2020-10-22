@@ -17,5 +17,5 @@ export let options = {
 
 export default () => {
    // http.get('https://test-api.loadimpact.com/public/crocodiles/');
-   http.get(`${__ENV.ENVIRONMENT_URL`});
+   http.get(`${__ENV.ENVIRONMENT_URL}`);
 }
