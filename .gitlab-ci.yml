@@ -233,7 +233,7 @@ stop_testing:
 
 load_performance:
   dependencies:
-    - review
+    - deploy_testing
   variables:
     K6_DOCKER_OPTIONS: '--env-file review.env'
     K6_TEST_FILE: k6-scripts/load-script.js
