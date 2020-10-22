@@ -167,9 +167,32 @@ include:
   - template: Jobs/Browser-Performance-Testing.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab-foss/blob/master/lib/gitlab/ci/templates/Jobs/Browser-Performance-Testing.gitlab-ci.yml
   - template: Verify/Load-Performance-Testing.gitlab-ci.yml
 
+
+review:
+  stage: deploy
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: http://$CI_ENVIRONMENT_SLUG.example.com
+  script:
+    - run_deploy_script
+    - echo "ENVIRONMENT_URL=$CI_ENVIRONMENT_URL" >> review.env
+  artifacts:
+    paths:
+      - review.env
+  rules:
+    - if: '$CI_COMMIT_BRANCH'  # Modify to match your pipeline rules, or use `only/except` if needed.
+
+
 load_performance:
+  dependencies:
+    - review
   variables:
+    K6_DOCKER_OPTIONS: '--env-file review.env'
     K6_TEST_FILE: k6-scripts/load-script.js
+  rules:
+    - if: '$CI_COMMIT_BRANCH'  # Modify to match your pipeline rules, or use `only/except` if needed.
+
+
 
 
 
