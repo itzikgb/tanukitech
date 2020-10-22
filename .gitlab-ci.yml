@@ -64,9 +64,8 @@ stages:
   - validate-environment
   - test
   - deploy  # dummy stage to follow the template guidelines
-  - review
-  - dast
   - staging
+  - dast
   - canary
   - production
   - incremental rollout 10%
@@ -182,9 +181,9 @@ include:
   dependencies: []
 
 
-review:
+deploy_testing:
   extends: .auto-deploy
-  stage: review
+  stage: staging
   script:
     - auto-deploy check_kube_domain
     - auto-deploy download_chart
@@ -210,7 +209,7 @@ review:
       when: never
     - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
 
-stop_review:
+stop_testing:
   extends: .auto-deploy
   stage: cleanup
   variables:
