@@ -60,8 +60,6 @@ variables:
 
 stages:
   - build
-  - deploy-testing
-  - validate-environment
   - test
   - deploy  # dummy stage to follow the template guidelines
   - staging
