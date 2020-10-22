@@ -13,9 +13,10 @@ export let options = {
     ],
     thresholds: { 'http_req_duration': ['p(95)<400', 'p(99.99)<1500'] },
     summaryTrendStats: ['avg', 'p(95)', 'p(99.99)'],
+    insecureSkipTLSVerify: true,
 };
 
 export default () => {
    // http.get('https://test-api.loadimpact.com/public/crocodiles/');
-   http.get('https://about.gitlab.com/learn/');
+   http.get(`${__ENV.ENVIRONMENT_URL}`);
 }
