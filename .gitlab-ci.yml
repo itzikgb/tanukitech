@@ -62,8 +62,9 @@ stages:
   - build
   - test
   - deploy  # dummy stage to follow the template guidelines
-  - staging
+  - review
   - dast
+  - staging
   - canary
   - production
   - incremental rollout 10%
@@ -181,7 +182,7 @@ include:
 
 deploy_testing:
   extends: .auto-deploy
-  stage: staging
+  stage: review
   script:
     - auto-deploy check_kube_domain
     - auto-deploy download_chart
