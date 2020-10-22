@@ -168,22 +168,12 @@ include:
   - template: Verify/Load-Performance-Testing.gitlab-ci.yml
 
 
-review:
-  stage: deploy
-  script:
-    - echo "ENVIRONMENT_URL=$CI_ENVIRONMENT_URL" >> review.env
-  artifacts:
-    paths:
-      - review.env
-  rules:
-    - if: '$CI_COMMIT_BRANCH'  # Modify to match your pipeline rules, or use `only/except` if needed.
 
 
 load_performance:
   dependencies:
     - review
   variables:
-    K6_DOCKER_OPTIONS: '--env-file review.env'
     K6_TEST_FILE: k6-scripts/load-script.js
   rules:
     - if: '$CI_COMMIT_BRANCH'  # Modify to match your pipeline rules, or use `only/except` if needed.
