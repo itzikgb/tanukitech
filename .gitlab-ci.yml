@@ -170,11 +170,7 @@ include:
 
 review:
   stage: deploy
-  environment:
-    name: review/$CI_COMMIT_REF_NAME
-    url: http://$CI_ENVIRONMENT_SLUG.example.com
   script:
-    - auto-deploy deploy
     - echo "ENVIRONMENT_URL=$CI_ENVIRONMENT_URL" >> review.env
   artifacts:
     paths:
