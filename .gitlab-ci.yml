@@ -62,6 +62,7 @@ variables:
 stages:
   - build
   - test
+  - accessibility
   - deploy  # dummy stage to follow the template guidelines
   - review
   - dast
@@ -159,6 +160,9 @@ workflow:
     - exists:
         - .static
 
+variables:
+  a11y_urls: "https://about.gitlab.com https://gitlab.com/users/sign_in"
+
 include:
   - template: Jobs/Build.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Jobs/Build.gitlab-ci.yml
   - template: Jobs/Test.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Jobs/Test.gitlab-ci.yml
@@ -175,6 +179,7 @@ include:
   - template: Security/SAST.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Security/SAST.gitlab-ci.yml
   - template: Security/Secret-Detection.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Security/Secret-Detection.gitlab-ci.yml
   - template: Verify/Load-Performance-Testing.gitlab-ci.yml
+  - template: "Verify/Accessibility.gitlab-ci.yml"
 
 .auto-deploy:
   image: "registry.gitlab.com/gitlab-org/cluster-integration/auto-deploy-image:v1.0.5"
