@@ -62,9 +62,9 @@ variables:
 stages:
   - build
   - test
-  - accessibility
   - deploy  # dummy stage to follow the template guidelines
   - review
+  - accessibility
   - dast
   - staging
   - canary
