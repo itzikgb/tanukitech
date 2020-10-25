@@ -59,6 +59,8 @@ variables:
 
   DOCKER_TLS_CERTDIR: ""  # https://gitlab.com/gitlab-org/gitlab-runner/issues/4501
 
+  a11y_urls: "https://about.gitlab.com https://gitlab.com/users/sign_in"
+
 stages:
   - build
   - test
@@ -160,8 +162,7 @@ workflow:
     - exists:
         - .static
 
-variables:
-  a11y_urls: "https://about.gitlab.com https://gitlab.com/users/sign_in"
+
 
 include:
   - template: Jobs/Build.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Jobs/Build.gitlab-ci.yml
