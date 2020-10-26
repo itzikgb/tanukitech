@@ -240,8 +240,7 @@ functional_test:
   parallel:
     matrix:
       - ENVIRONMENT: [windows, mac, ios, android]
-        BROWSER: [chrome, safari]
-        VERSION: [1,2]
+        BROWSER: [chrome, safari, ie]
 
 
 load_performance:
