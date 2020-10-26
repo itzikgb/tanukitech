@@ -11,7 +11,7 @@ export let options = {
 //         { duration: '10m', target: 60 }, // continue at 60 for additional 10 minutes
 //         { duration: '5m', target: 0 }  // ramp-down to 0 users
     ],
-    thresholds: { 'http_req_duration': ['p(95)<400', 'p(99.99)<1500'] },
+    thresholds: { 'http_req_duration': ['p(95)<600', 'p(99.99)<1500'] },
     summaryTrendStats: ['avg', 'p(95)', 'p(99.99)'],
     insecureSkipTLSVerify: true,
 };
