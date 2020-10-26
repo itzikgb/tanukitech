@@ -68,13 +68,7 @@ stages:
   - review
   - accessibility
   - dast
-  - staging
-  - canary
-  - production
-  - incremental rollout 10%
-  - incremental rollout 25%
-  - incremental rollout 50%
-  - incremental rollout 100%
+  - functional
   - performance
   - cleanup
 
@@ -238,7 +232,7 @@ stop_testing:
       when: manual
 
 functional_test:
-  stage: test
+  stage: functional
   tags: 
     - windows-vm, functional
   script:
