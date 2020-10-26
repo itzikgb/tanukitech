@@ -237,6 +237,18 @@ stop_testing:
     - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
       when: manual
 
+functional_test:
+  stage: test
+  tags: 
+    - windows-vm, functional
+  script:
+    - echo testing $ARCHITECTURE $TARGET $VERSION 
+  parallel:
+    matrix:
+      - ENVIRONMENT: [windows, mac, ios, android]
+        BROWSER: [chrome, safari]
+        VERSION: [1,2]
+
 
 load_performance:
   dependencies:
