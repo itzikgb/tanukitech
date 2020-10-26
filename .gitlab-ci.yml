@@ -233,8 +233,6 @@ stop_testing:
 
 functional_test:
   stage: functional
-  tags: 
-    - windows-vm, functional
   script:
     - echo testing $ARCHITECTURE $TARGET $VERSION 
   parallel:
