@@ -21,6 +21,7 @@
 # * review: REVIEW_DISABLED
 # * stop_review: REVIEW_DISABLED
 #
+
 # In order to deploy, you must have a Kubernetes cluster configured either
 # via a project integration, or via group/project variables.
 # KUBE_INGRESS_BASE_DOMAIN must also be set on the cluster settings,
@@ -58,19 +59,16 @@ variables:
 
   DOCKER_TLS_CERTDIR: ""  # https://gitlab.com/gitlab-org/gitlab-runner/issues/4501
 
+  a11y_urls: https://21725976-review-accessibil-gokwfz.35.204.255.125.nip.io/"
+
 stages:
   - build
   - test
   - deploy  # dummy stage to follow the template guidelines
   - review
+  - accessibility
   - dast
-  - staging
-  - canary
-  - production
-  - incremental rollout 10%
-  - incremental rollout 25%
-  - incremental rollout 50%
-  - incremental rollout 100%
+  - functional
   - performance
   - cleanup
 
@@ -158,6 +156,8 @@ workflow:
     - exists:
         - .static
 
+
+
 include:
   - template: Jobs/Build.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Jobs/Build.gitlab-ci.yml
   - template: Jobs/Test.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Jobs/Test.gitlab-ci.yml
@@ -174,6 +174,7 @@ include:
   - template: Security/SAST.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Security/SAST.gitlab-ci.yml
   - template: Security/Secret-Detection.gitlab-ci.yml  # https://gitlab.com/gitlab-org/gitlab/blob/master/lib/gitlab/ci/templates/Security/Secret-Detection.gitlab-ci.yml
   - template: Verify/Load-Performance-Testing.gitlab-ci.yml
+  - template: "Verify/Accessibility.gitlab-ci.yml"
 
 .auto-deploy:
   image: "registry.gitlab.com/gitlab-org/cluster-integration/auto-deploy-image:v1.0.5"
@@ -229,6 +230,15 @@ stop_testing:
       when: never
     - if: '$CI_COMMIT_TAG || $CI_COMMIT_BRANCH'
       when: manual
+
+functional_test:
+  stage: functional
+  script:
+    - echo testing $ARCHITECTURE $TARGET $VERSION 
+  parallel:
+    matrix:
+      - ENVIRONMENT: [windows, mac, ios, android]
+        BROWSER: [chrome, safari, ie]
 
 
 load_performance:
