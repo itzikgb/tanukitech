@@ -59,7 +59,7 @@ variables:
 
   DOCKER_TLS_CERTDIR: ""  # https://gitlab.com/gitlab-org/gitlab-runner/issues/4501
 
-  a11y_urls: "https://about.gitlab.com https://gitlab.com/users/sign_in"
+  a11y_urls: https://21725976-review-accessibil-gokwfz.35.204.255.125.nip.io/"
 
 stages:
   - build
