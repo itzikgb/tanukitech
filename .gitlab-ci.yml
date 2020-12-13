@@ -9,7 +9,7 @@
 # * and continuous deployment to production
 #
 
-#itzik
+#itzik-gb1
 # Test jobs may be disabled by setting environment variables:
 # * test: TEST_DISABLED
 # * code_quality: CODE_QUALITY_DISABLED
