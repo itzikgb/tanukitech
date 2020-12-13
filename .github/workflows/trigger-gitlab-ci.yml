@@ -1,0 +1,16 @@
+name: trigger gitlab ci/cd
+on: [push]
+jobs:
+
+  autodevops:
+    name: autdevops 
+    runs-on: ubunto-latest 
+    steps:
+    - name: trigger gitlab pipeline
+    uses: appleboy/gitlab-ci-action@master
+    with:
+      host: "https://gitlab.com"
+      token: "957f5ebce6cf4b2a12d1512804e00f"
+      debug: "true" 
+      project_id: 22925079
+      ref: "master"
